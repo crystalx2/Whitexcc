@@ -1141,7 +1141,7 @@
         .qr-container,
         .utr-container,
         .fail-container {
-            max-width: 450px;
+            max-width: 500px;
             margin: 1.5rem auto;
             padding: 1.5rem;
         }
@@ -1150,15 +1150,22 @@
             display: flex;
             justify-content: center;
             margin: 1rem 0;
+            position: relative;
         }
 
         canvas.qr-canvas {
-            width: 180px;
-            height: 180px;
+            width: 240px;
+            height: 240px;
             background: white;
-            border-radius: 16px;
-            padding: 6px;
-            box-shadow: 0 0 20px cyan;
+            border-radius: 20px;
+            padding: 12px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.25), 0 0 60px rgba(0, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        canvas.qr-canvas:hover {
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.35), 0 0 80px rgba(0, 255, 255, 0.08);
+            transform: scale(1.02);
         }
 
         .qr-placeholder {
@@ -1166,10 +1173,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 180px;
-            height: 180px;
+            width: 240px;
+            height: 240px;
             background: #0a0a18;
-            border-radius: 16px;
+            border-radius: 20px;
             border: 2px dashed #00ffff44;
             color: #00ffff88;
             font-size: 0.8rem;
@@ -1178,7 +1185,7 @@
         }
 
         .qr-placeholder i {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 0.5rem;
             color: cyan;
         }
@@ -1189,6 +1196,44 @@
             font-size: 0.7rem;
             margin-top: 4px;
             word-break: break-all;
+        }
+
+        /* QR Download Button */
+        .qr-download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(95deg, #00cc88, #00aa66);
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 2rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 204, 136, 0.3);
+            margin-top: 0.8rem;
+            width: fit-content;
+        }
+
+        .qr-download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 204, 136, 0.5);
+        }
+
+        .qr-download-btn:active {
+            transform: scale(0.95);
+        }
+
+        .qr-download-btn i {
+            font-size: 1rem;
+        }
+
+        .qr-download-wrapper {
+            text-align: center;
+            margin-top: 0.5rem;
         }
 
         .page-with-back {
@@ -2071,8 +2116,12 @@
                 padding: 1rem;
             }
             canvas.qr-canvas {
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
+            }
+            .qr-placeholder {
+                width: 200px;
+                height: 200px;
             }
             .back-btn {
                 font-size: 0.7rem;
@@ -2116,6 +2165,10 @@
             }
             .thankyou-content .thankyou-icon {
                 font-size: 4rem;
+            }
+            .qr-download-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.8rem;
             }
         }
 
@@ -2193,6 +2246,18 @@
             .thankyou-content .thankyou-icon {
                 font-size: 3rem;
             }
+            canvas.qr-canvas {
+                width: 170px;
+                height: 170px;
+            }
+            .qr-placeholder {
+                width: 170px;
+                height: 170px;
+            }
+            .qr-download-btn {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.7rem;
+            }
         }
 
         @media (hover: none) {
@@ -2223,6 +2288,12 @@
             }
             .logout-popup .btn-group .btn-cancel-logout:hover {
                 background: rgba(255, 255, 255, 0.06);
+            }
+            canvas.qr-canvas:hover {
+                transform: none;
+            }
+            .qr-download-btn:hover {
+                transform: none;
             }
         }
 
@@ -2339,7 +2410,7 @@
 
     // ========== LOAD / SAVE DATA ==========
     let packagesData = {};
-    let upiId = 'shellexshubham@fam';
+    let upiId = 'shivamxseller@fam';
 
     function loadData() {
         try {
@@ -2347,14 +2418,14 @@
             if (saved) {
                 const data = JSON.parse(saved);
                 packagesData = data.packages || JSON.parse(JSON.stringify(DEFAULT_PLANS));
-                upiId = data.upiId || 'shellexshubham@fam';
+                upiId = data.upiId || 'shivamxseller@fam';
             } else {
                 packagesData = JSON.parse(JSON.stringify(DEFAULT_PLANS));
-                upiId = 'shellexshubham@fam';
+                upiId = 'shivamxseller@fam';
             }
         } catch (e) {
             packagesData = JSON.parse(JSON.stringify(DEFAULT_PLANS));
-            upiId = 'shellexshubham@fam';
+            upiId = 'shivamxseller@fam';
         }
     }
 
@@ -2562,7 +2633,7 @@
 
     function saveAdminChanges() {
         const upiInput = document.getElementById('adminUpiInput');
-        if (upiInput) upiId = upiInput.value.trim() || 'shellexshubham@fam';
+        if (upiInput) upiId = upiInput.value.trim() || 'shivamxseller@fam';
 
         const networks = ['VISA', 'Mastercard', 'RuPay'];
         networks.forEach(net => {
@@ -3045,7 +3116,13 @@
                         <canvas class="qr-canvas" id="qrCanvas" style="display:none;"></canvas>
                     </div>
 
-                    <div style="text-align:center;margin:0.5rem 0;">
+                    <div class="qr-download-wrapper">
+                        <button class="qr-download-btn" onclick="downloadQR()">
+                            <i class="fas fa-download"></i> Download QR Code
+                        </button>
+                    </div>
+
+                    <div style="text-align:center;margin:0.8rem 0 0.5rem;">
                         <div style="background:rgba(0,0,0,0.3);border-radius:0.8rem;padding:0.6rem;display:inline-block;">
                             <span style="color:#aaa;font-size:0.7rem;">UPI ID: </span>
                             <span style="color:white;font-weight:600;font-size:0.9rem;">${upiId}</span>
@@ -3053,7 +3130,7 @@
                         </div>
                     </div>
 
-                    <div style="display:flex;gap:10px;margin-top:1rem;">
+                    <div style="display:flex;gap:10px;margin-top:0.5rem;">
                         <button class="btn-success" style="flex:1;justify-content:center;" onclick="confirmPayment()"><i class="fas fa-check-circle"></i> I've Paid</button>
                         <button class="btn-cancel" style="flex:1;justify-content:center;" onclick="cancelPayment()"><i class="fas fa-times"></i> Cancel</button>
                     </div>
@@ -3074,7 +3151,7 @@
         try {
             const amount = selectedPackage ? selectedPackage.price : 0;
             const upiString = `upi://pay?pa=${upiId}&pn=White%20X&am=${amount}&cu=INR`;
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(upiString)}&bgcolor=ffffff&color=000000&margin=10`;
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(upiString)}&bgcolor=ffffff&color=000000&margin=15`;
 
             if (placeholder) placeholder.style.display = 'none';
             canvas.style.display = 'block';
@@ -3083,11 +3160,12 @@
             img.crossOrigin = 'anonymous';
             img.onload = function() {
                 const ctx = canvas.getContext('2d');
-                canvas.width = 180;
-                canvas.height = 180;
+                const size = 240;
+                canvas.width = size;
+                canvas.height = size;
                 ctx.fillStyle = 'white';
-                ctx.fillRect(0, 0, 180, 180);
-                ctx.drawImage(img, 6, 6, 168, 168);
+                ctx.fillRect(0, 0, size, size);
+                ctx.drawImage(img, 12, 12, size - 24, size - 24);
             };
             img.onerror = function() {
                 if (placeholder) {
@@ -3101,6 +3179,50 @@
                 placeholder.style.display = 'flex';
                 canvas.style.display = 'none';
             }
+        }
+    }
+
+    function downloadQR() {
+        const canvas = document.getElementById('qrCanvas');
+        if (!canvas) {
+            showToast('QR not ready yet. Please wait.');
+            return;
+        }
+
+        try {
+            // Create a new canvas with white background and QR
+            const downloadCanvas = document.createElement('canvas');
+            const size = 400;
+            downloadCanvas.width = size;
+            downloadCanvas.height = size;
+            const ctx = downloadCanvas.getContext('2d');
+
+            // White background
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, size, size);
+
+            // Draw QR from existing canvas
+            const qrSize = size - 40;
+            const offset = 20;
+            ctx.drawImage(canvas, offset, offset, qrSize, qrSize);
+
+            // Add border
+            ctx.strokeStyle = '#00ffff';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(5, 5, size - 10, size - 10);
+
+            // Create download link
+            const link = document.createElement('a');
+            link.download = `WHITE_X_QR_${Date.now()}.png`;
+            link.href = downloadCanvas.toDataURL('image/png');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast('QR Code downloaded successfully! ✅');
+        } catch (e) {
+            console.error('Download error:', e);
+            showToast('Error downloading QR. Please try again.');
         }
     }
 
@@ -3144,7 +3266,6 @@
 
     function confirmLogout() {
         closeLogoutPopup();
-        // Show Thank You animation
         const thankyou = document.getElementById('thankyouOverlay');
         if (thankyou) {
             thankyou.classList.add('active');
@@ -3154,13 +3275,11 @@
                 currentView = 'home';
                 selectedPackage = null;
                 render();
-                // Hide thank you after render
                 setTimeout(() => {
                     thankyou.classList.remove('active');
                 }, 500);
             }, 2500);
         } else {
-            // Fallback
             isLoggedIn = false;
             showWelcome = false;
             currentView = 'home';
@@ -3337,7 +3456,6 @@
     window.goHome = goHome;
     window.switchNetwork = switchNetwork;
     window.openSupport = openSupport;
-    window.handleLogout = handleLogout;
     window.handleBuyNowWithAnimation = handleBuyNowWithAnimation;
     window.confirmPayment = confirmPayment;
     window.cancelPayment = cancelPayment;
@@ -3352,6 +3470,7 @@
     window.showToast = showToast;
     window.renderAdminPanel = renderAdminPanel;
     window.generateQR = generateQR;
+    window.downloadQR = downloadQR;
     window.showFailPopup = showFailPopup;
     window.closeFailPopupAndRetry = closeFailPopupAndRetry;
     window.closeFailPopupAndGoHome = closeFailPopupAndGoHome;
