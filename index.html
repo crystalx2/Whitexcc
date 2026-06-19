@@ -1757,6 +1757,225 @@
             }
         }
 
+        /* ===== LOGOUT POPUP ===== */
+        .logout-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            z-index: 8000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .logout-popup-overlay.active {
+            display: flex;
+        }
+
+        .logout-popup {
+            max-width: 400px;
+            width: 100%;
+            background: rgba(12, 12, 25, 0.95);
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 60px rgba(0, 255, 255, 0.05);
+            text-align: center;
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logout-popup .logout-icon {
+            font-size: 3.5rem;
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+        }
+
+        .logout-popup h2 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+
+        .logout-popup p {
+            font-size: 0.85rem;
+            color: #8899aa;
+            margin-bottom: 1.2rem;
+        }
+
+        .logout-popup .logout-domain {
+            font-size: 0.7rem;
+            color: #667;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            display: inline-block;
+            margin-bottom: 1.2rem;
+        }
+
+        .logout-popup .logout-domain i {
+            color: cyan;
+            margin-right: 6px;
+        }
+
+        .logout-popup .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .logout-popup .btn-group .btn-primary {
+            flex: 1;
+            justify-content: center;
+            background: linear-gradient(95deg, #ff3366, #cc0044);
+            box-shadow: 0 0 8px #ff336677;
+        }
+
+        .logout-popup .btn-group .btn-primary:hover {
+            box-shadow: 0 0 22px #ff3366, 0 0 12px #ff0044;
+        }
+
+        .logout-popup .btn-group .btn-cancel-logout {
+            flex: 1;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 2rem;
+            padding: 0.7rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #8899aa;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-popup .btn-group .btn-cancel-logout:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+        /* ===== THANK YOU ANIMATION ===== */
+        .thankyou-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0a0a1a, #000000);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        .thankyou-overlay.active {
+            display: flex;
+        }
+
+        .thankyou-content {
+            text-align: center;
+            animation: thankyouAnim 1.2s ease-out forwards;
+        }
+
+        @keyframes thankyouAnim {
+            0% {
+                opacity: 0;
+                transform: scale(0.6) translateY(30px);
+            }
+            60% {
+                opacity: 1;
+                transform: scale(1.05) translateY(-5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .thankyou-content .thankyou-icon {
+            font-size: 5rem;
+            color: #00ff88;
+            text-shadow: 0 0 60px #00ff88;
+            margin-bottom: 1rem;
+            animation: pulseThankYou 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseThankYou {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .thankyou-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #00ffff, #bf4aff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.3rem;
+        }
+
+        .thankyou-content p {
+            font-size: 1rem;
+            color: #8899aa;
+            margin-bottom: 0.2rem;
+        }
+
+        .thankyou-content .thankyou-sub {
+            font-size: 0.8rem;
+            color: #667;
+            margin-top: 0.5rem;
+        }
+
+        .thankyou-content .thankyou-sub i {
+            color: cyan;
+            margin: 0 4px;
+        }
+
+        .thankyou-content .thankyou-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #00ffff, #bf4aff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-top: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .thankyou-content .sparkles {
+            margin-top: 0.5rem;
+            font-size: 2rem;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+        }
+
         @media (max-width: 768px) {
             .login-card {
                 padding: 1.8rem 1.2rem;
@@ -1886,6 +2105,18 @@
             .card-vault {
                 height: 170px;
             }
+            .logout-popup {
+                padding: 1.5rem 1.2rem;
+            }
+            .logout-popup .btn-group {
+                flex-direction: column;
+            }
+            .thankyou-content h1 {
+                font-size: 2rem;
+            }
+            .thankyou-content .thankyou-icon {
+                font-size: 4rem;
+            }
         }
 
         @media (max-width: 400px) {
@@ -1950,6 +2181,18 @@
                 font-size: 0.6rem;
                 padding: 0.3rem 0.8rem;
             }
+            .logout-popup {
+                padding: 1.2rem 1rem;
+            }
+            .logout-popup h2 {
+                font-size: 1.1rem;
+            }
+            .thankyou-content h1 {
+                font-size: 1.6rem;
+            }
+            .thankyou-content .thankyou-icon {
+                font-size: 3rem;
+            }
         }
 
         @media (hover: none) {
@@ -1977,6 +2220,9 @@
             }
             .support-card .telegram-btn:hover {
                 background: rgba(0, 136, 204, 0.2);
+            }
+            .logout-popup .btn-group .btn-cancel-logout:hover {
+                background: rgba(255, 255, 255, 0.06);
             }
         }
 
@@ -2014,7 +2260,11 @@
     let adminTapCount = 0;
     let adminTapTimeout = null;
 
-    // ========== ONLY FOREIGN NAMES (USA/UK/Germany/Europe) ==========
+    // ========== DOMAIN NAME ==========
+    const SITE_NAME = 'WHITE X';
+    const DOMAIN = 'whitex.com';
+
+    // ========== ONLY FOREIGN NAMES ==========
     const FOREIGN_FIRST = [
         'Thomas', 'Jerry', 'Michael', 'David', 'Christopher', 'James', 'John', 'Robert',
         'William', 'Richard', 'Joseph', 'Charles', 'Daniel', 'Matthew', 'Anthony', 'Mark',
@@ -2022,9 +2272,7 @@
         'Timothy', 'Ronald', 'Edward', 'Jason', 'Jeffrey', 'Ryan', 'Jacob', 'Gary',
         'Nicholas', 'Eric', 'Jonathan', 'Stephen', 'Larry', 'Justin', 'Scott', 'Brandon',
         'Benjamin', 'Samuel', 'Raymond', 'Gregory', 'Frank', 'Alexander', 'Patrick', 'Jack',
-        'Dennis', 'Tyler', 'Aaron', 'Jose', 'Nathan', 'Adam', 'Henry', 'Zachary',
-        'Tristan', 'Dylan', 'Cameron', 'Evan', 'Ian', 'Louis', 'Oscar', 'Victor',
-        'Peter', 'George', 'Thomas', 'Charles', 'Christopher', 'Daniel', 'Matthew'
+        'Dennis', 'Tyler', 'Aaron', 'Jose', 'Nathan', 'Adam', 'Henry', 'Zachary'
     ];
 
     const FOREIGN_LAST = [
@@ -2034,9 +2282,7 @@
         'Sanchez', 'Clark', 'Ramirez', 'Lewis', 'Robinson', 'Walker', 'Young', 'Allen',
         'King', 'Wright', 'Scott', 'Torres', 'Nguyen', 'Hill', 'Flores', 'Green',
         'Adams', 'Nelson', 'Baker', 'Hall', 'Rivera', 'Campbell', 'Mitchell', 'Carter',
-        'Roberts', 'Turner', 'Phillips', 'Evans', 'Collins', 'Edwards', 'Stewart', 'Morris',
-        'Murphy', 'Cook', 'Rogers', 'Morgan', 'Peterson', 'Cooper', 'Reed', 'Bailey',
-        'Bell', 'Howard', 'Ward', 'Cox', 'Diaz', 'Richardson', 'Wood', 'Watson'
+        'Roberts', 'Turner', 'Phillips', 'Evans', 'Collins', 'Edwards', 'Stewart', 'Morris'
     ];
 
     function generateForeignName() {
@@ -2411,7 +2657,7 @@
         }
     }
 
-    // ========== LOGIN - ENTER ONLY ==========
+    // ========== LOGIN ==========
     function renderLogin() {
         return `
             <div class="login-container">
@@ -2516,7 +2762,7 @@
                     <a onclick="goHome()"><i class="fas fa-home"></i> Home</a>
                     <a onclick="openSupport()"><i class="fas fa-headset"></i> Support</a>
                     <a onclick="adminTapHandler(event)" style="cursor:pointer;color:#666;"><i class="fas fa-cog"></i></a>
-                    <span class="btn-outline" onclick="handleLogout()" style="padding:0.2rem 0.8rem;font-size:0.7rem;"><i class="fas fa-sign-out-alt"></i> Logout</span>
+                    <span class="btn-outline" onclick="showLogoutPopup()" style="padding:0.2rem 0.8rem;font-size:0.7rem;"><i class="fas fa-sign-out-alt"></i> Logout</span>
                 </div>
             </div>
         `;
@@ -2536,6 +2782,33 @@
                 <div class="admin-panel" id="adminPanelContainer"></div>
             </div>
             <div class="admin-toast" id="adminToast"></div>
+
+            <!-- Logout Popup -->
+            <div class="logout-popup-overlay" id="logoutPopup">
+                <div class="logout-popup">
+                    <div class="logout-icon"><i class="fas fa-sign-out-alt"></i></div>
+                    <h2>Logout?</h2>
+                    <p>Are you sure you want to logout from ${SITE_NAME}?</p>
+                    <div class="logout-domain"><i class="fas fa-globe"></i> ${DOMAIN}</div>
+                    <div class="btn-group">
+                        <button class="btn-primary" onclick="confirmLogout()"><i class="fas fa-check"></i> Yes, Logout</button>
+                        <button class="btn-cancel-logout" onclick="closeLogoutPopup()"><i class="fas fa-times"></i> Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thank You Animation -->
+            <div class="thankyou-overlay" id="thankyouOverlay">
+                <div class="thankyou-content">
+                    <div class="thankyou-icon"><i class="fas fa-check-circle"></i></div>
+                    <h1>Thank You!</h1>
+                    <p>You have been successfully logged out.</p>
+                    <div class="sparkles">✨✨✨</div>
+                    <div class="thankyou-sub"><i class="fas fa-clock"></i> See you again soon!</div>
+                    <div class="thankyou-logo">WHITE X</div>
+                </div>
+            </div>
+
             <!-- Fail Popup -->
             <div class="fail-popup-overlay" id="failPopup">
                 <div class="fail-popup">
@@ -2556,6 +2829,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Success Popup -->
             <div class="success-popup-overlay" id="successPopup">
                 <div class="success-popup">
@@ -2857,6 +3131,44 @@
         render();
     }
 
+    // ========== LOGOUT POPUP ==========
+    function showLogoutPopup() {
+        const popup = document.getElementById('logoutPopup');
+        if (popup) popup.classList.add('active');
+    }
+
+    function closeLogoutPopup() {
+        const popup = document.getElementById('logoutPopup');
+        if (popup) popup.classList.remove('active');
+    }
+
+    function confirmLogout() {
+        closeLogoutPopup();
+        // Show Thank You animation
+        const thankyou = document.getElementById('thankyouOverlay');
+        if (thankyou) {
+            thankyou.classList.add('active');
+            setTimeout(() => {
+                isLoggedIn = false;
+                showWelcome = false;
+                currentView = 'home';
+                selectedPackage = null;
+                render();
+                // Hide thank you after render
+                setTimeout(() => {
+                    thankyou.classList.remove('active');
+                }, 500);
+            }, 2500);
+        } else {
+            // Fallback
+            isLoggedIn = false;
+            showWelcome = false;
+            currentView = 'home';
+            selectedPackage = null;
+            render();
+        }
+    }
+
     // ========== FAIL POPUP ==========
     function showFailPopup() {
         const popup = document.getElementById('failPopup');
@@ -2998,16 +3310,6 @@
         document.getElementById('support')?.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function handleLogout() {
-        if (confirm('Are you sure you want to logout?')) {
-            isLoggedIn = false;
-            showWelcome = false;
-            currentView = 'home';
-            selectedPackage = null;
-            render();
-        }
-    }
-
     // ========== ADMIN TAP HANDLER ==========
     function adminTapHandler(event) {
         event.preventDefault();
@@ -3055,5 +3357,8 @@
     window.closeFailPopupAndGoHome = closeFailPopupAndGoHome;
     window.showSuccessPopup = showSuccessPopup;
     window.closeSuccessPopup = closeSuccessPopup;
+    window.showLogoutPopup = showLogoutPopup;
+    window.closeLogoutPopup = closeLogoutPopup;
+    window.confirmLogout = confirmLogout;
 </script>
 </html>
